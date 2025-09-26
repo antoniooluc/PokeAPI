@@ -1,75 +1,17 @@
-# Nuxt Minimal Starter
+# Instrucciones para ejecutarlo en local 
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Este proyecto utiliza **Docker Compose** para simplificar la instalación y evitar conflictos de dependencias o versiones de Node/Nuxt.
 
-## Setup
+## Cómo levantar el entorno
 
-Make sure to install dependencies:
+```bash 
+# Construir la imagen y arrancar el contenedor en segundo plano
+docker compose up --build -d
 
-```bash
-# npm
-npm install
+# Ver logs en tiempo real
+docker compose logs -f
 
-# pnpm
-pnpm install
+# Parar y eliminar contenedores
+docker compose down
 
-# yarn
-yarn install
-
-# bun
-bun install
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
