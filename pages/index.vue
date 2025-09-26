@@ -47,11 +47,11 @@
 <script setup lang="ts">
   import type { PokemonResponse, PokemonType } from '~/types/pokemon'
 
-  const cacheTipos = new Map<string, any>()
+  const cacheTipos = useState<Map<string, any>>('pokemonCache', () => new Map())
 
   const currentUrl = ref(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`)
 
-  const { data, pending, error } = await useFetch<PokemonResponse>(currentUrl, {key: currentUrl})
+  const { data, pending, error } = await useFetch<PokemonResponse>(currentUrl)
 
   function getIdFromUrl(url: string) {
     return url.split("/").filter(Boolean).pop();
@@ -77,13 +77,13 @@
     try {
       await Promise.all(
         data.value.results.map(async (pokemon) => {
-          if (!cacheTipos.has(pokemon.url)){
+          if (!cacheTipos.value.has(pokemon.url)){
             const detail = await $fetch<{ types: PokemonType[] }>(pokemon.url)
             const tipos = detail.types.map(typeSlot => typeSlot.type.name)
-            cacheTipos.set(pokemon.url, tipos)
+            cacheTipos.value.set(pokemon.url, tipos)
             pokemon.tipos = tipos
           } else {
-            pokemon.tipos = cacheTipos.get(pokemon.url)
+            pokemon.tipos = cacheTipos.value.get(pokemon.url)
           }
         })
       )
