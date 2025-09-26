@@ -4,7 +4,10 @@ Este proyecto utiliza **Docker Compose** para simplificar la instalación y evit
 
 ## Cómo levantar el entorno
 
-```bash 
+```bash
+# CLonar el repositorio
+git clone https://github.com/antoniooluc/PokeAPI.git
+
 # Construir la imagen y arrancar el contenedor en segundo plano
 docker compose up --build -d
 
